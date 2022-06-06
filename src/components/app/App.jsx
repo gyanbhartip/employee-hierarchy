@@ -1,12 +1,14 @@
-import { employees } from "../../utils/employees";
 import EmployeeCard from "../employeeCard/EmployeeCard";
 import "./App.css";
+import { useGlobalContext } from "../../utils/context/Context";
 
 function App() {
+  const { filteredEmployees } = useGlobalContext();
   return (
     <div className="App">
-      Hello World!
-      <EmployeeCard data={employees} />
+      {filteredEmployees.map((employee) => (
+        <EmployeeCard {...employee} key={employee.id} />
+      ))}
     </div>
   );
 }
